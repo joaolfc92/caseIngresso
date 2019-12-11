@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+  </head>
+  <body>
+    <header>
+      <div class="topMenu">
+        <div class="topMargin">
+            <img src="assets/img/ingressoLogo.PNG" alt="">
+            <div class="search">
+                <i class="fas fa-search"></i>
+                <input type="text" id="search" onkeyup="searchMovie()" placeholder="Procure por filmes.." title="Type in a name">
+            </div>
+
+
+            <div class="local-wrap">
+              <span class="local">
+                <a href="javascript:void(0);" onclick="toggleChangeCity();" data-bind="with: currentCity">
+                  <!--i class="fas fa-exchange-alt"></i--><span data-bind="text: $data"></span><i class="fas fa-map-marker-alt"></i>
+                </a>
+              </span>
+              <div class="changeCity" data-bind="foreach: cities">
+                <a href="javascript:void(0);" data-bind="text: $data, click: $parent.changeCity"></a>
+              </div>
+            </div>
+
+        </div>
+
+      </div>
+      <div class="headerMargin">
+        <h1>Filmes</h1>
+        <ul class="filter" data-bind="foreach: type">
+          <li><input  type="checkbox" class="css-checkbox" data-bind="attr:{id: $data, name: $data, value: $data}, checked: $parent.typeChecked,click: $parent.check"/><label class="css-label" data-bind="text: $data,attr:{for: $data}"></label></li>
+        </ul>
+        <ul class='menu'>
+          <li class="selected"><a href="#">EM CARTAZ</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <main>
+      <section data-bind="foreach: currentMovies">
+
+        <article data-bind="click: $parent.showTrailer">
+          <div class="poster">
+            <img src="" alt="teste" data-bind="attr:{src: image}">
+            <div class="tags" data-bind="foreach: tags">
+              <div data-bind="text: $data[0], attr:{class: $data[1]}"></div>
+            </div>
+          </div>
+          <div class="nome" data-bind="text: $data.name"></div>
+        </article>
+
+      </section>
+    </main>
+    <div class="popUp">
+      <article>
+        <div>
+          <a href="javascript:void(0);" onclick="closePopUp();"><i class="fas fa-times"></i></a>
+        </div>
+        <iframe width="560" height="315" src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </article>
+    </div>
+    <script src="assets/js/knockout-3.2.0.js"></script>
+    <script src="assets/js/jquery-3.3.1.js"></script>
+    <script src="assets/js/app.js"></script>
+  </body>
+</html>
